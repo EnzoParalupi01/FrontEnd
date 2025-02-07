@@ -2,4 +2,5 @@
 - HtmlCss Revivel
 - Introdução JavaScript
 - Tipos de Dados
-- Operadores (Aritmética)
+- Operadores (Aritméticos, Relacionais, Lógicos)
+- Condicionais, Loops, Funções
