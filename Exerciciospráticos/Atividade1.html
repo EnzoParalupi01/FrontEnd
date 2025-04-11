@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Produto</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        input { margin: 5px; }
+    </style>
+</head>
+<body>
+
+    <h1>Produto</h1>
+
+    <p><strong>Nome:</strong> <span id="nomeProduto"></span></p>
+    <p><strong>Preço:</strong> R$ <span id="precoProduto"></span></p>
+    <p><strong>Estoque:</strong> <span id="estoqueProduto"></span> unidade(s)</p>
+
+    <hr>
+
+    <h2>Vender Produto</h2>
+    <input type="number" id="qtdVender" placeholder="Quantidade a vender">
+    <button onclick="produto.vender()">Vender</button>
+
+    <h2>Repor Produto</h2>
+    <input type="number" id="qtdRepor" placeholder="Quantidade a repor">
+    <button onclick="produto.repor()">Repor</button>
+
+    <script>
+        class Produto {
+            constructor(nome, preco, estoque) {
+                this.nome = nome;
+                this.preco = preco;
+                this.estoque = estoque;
+                this.exibirInfo();
+            }
+
+            vender() {
+                let qtd = parseInt(document.getElementById('qtdVender').value);
+                if (qtd > this.estoque) {
+                    alert("Estoque insuficiente!");
+                } else if (qtd > 0) {
+                    this.estoque -= qtd;
+                    alert(qtd + " unidade(s) vendida(s).");
+                    this.exibirInfo();
+                }
+            }
+
+            repor() {
+                let qtd = parseInt(document.getElementById('qtdRepor').value);
+                if (qtd > 0) {
+                    this.estoque += qtd;
+                    alert(qtd + " unidade(s) reposta(s) ao estoque.");
+                    this.exibirInfo();
+                }
+            }
+
+            exibirInfo() {
+                document.getElementById('nomeProduto').textContent = this.nome;
+                document.getElementById('precoProduto').textContent = this.preco.toFixed(2);
+                document.getElementById('estoqueProduto').textContent = this.estoque;
+            }
+        }
+
+        // Criando um produto de exemplo
+        const produto = new Produto("Fone de Ouvido", 99.90, 10);
+    </script>
+
+</body>
+</html>

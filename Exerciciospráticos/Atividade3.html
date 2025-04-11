@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Conta Bancária</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        input, button { margin: 5px; }
+    </style>
+</head>
+<body>
+
+    <h1>Conta Bancária</h1>
+
+    <h2>Detalhes da Conta</h2>
+    <div id="infoConta"></div>
+
+    <h2>Operações</h2>
+
+    <label for="depositar">Depositar: </label>
+    <input type="number" id="depositar" placeholder="Valor para depositar">
+    <button onclick="conta.depositar()">Depositar</button><br><br>
+
+    <label for="sacar">Sacar: </label>
+    <input type="number" id="sacar" placeholder="Valor para sacar">
+    <button onclick="conta.sacar()">Sacar</button><br><br>
+
+    <button onclick="conta.exibirSaldo()">Exibir Saldo</button>
+
+    <script>
+        // Classe ContaBancaria
+        class ContaBancaria {
+            constructor(titular, saldo) {
+                this.titular = titular;
+                this.saldo = saldo;
+            }
+
+            // Método para depositar dinheiro na conta
+            depositar() {
+                let valor = parseFloat(document.getElementById('depositar').value);
+                if (valor > 0) {
+                    this.saldo += valor;
+                    alert(`Você depositou R$${valor.toFixed(2)}.`);
+                } else {
+                    alert("Valor inválido para depósito.");
+                }
+                this.exibirSaldo();
+            }
+
+            // Método para sacar dinheiro da conta
+            sacar() {
+                let valor = parseFloat(document.getElementById('sacar').value);
+                if (valor <= 0) {
+                    alert("Valor inválido para saque.");
+                } else if (valor > this.saldo) {
+                    alert("Saldo insuficiente para saque.");
+                } else {
+                    this.saldo -= valor;
+                    alert(`Você sacou R$${valor.toFixed(2)}.`);
+                }
+                this.exibirSaldo();
+            }
+
+            // Método para exibir o saldo atual
+            exibirSaldo() {
+                document.getElementById('infoConta').innerHTML = `
+                    Titular: ${this.titular}<br>
+                    Saldo Atual: R$${this.saldo.toFixed(2)}
+                `;
+            }
+        }
+
+        // Criando uma conta bancária com saldo inicial de R$1000,00
+        const conta = new ContaBancaria("João Silva", 1000.00);
+        // Exibindo saldo inicial
+        conta.exibirSaldo();
+    </script>
+
+</body>
+</html>
