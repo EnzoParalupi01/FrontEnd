@@ -12,7 +12,7 @@ export default function Home() {
   //UseEffect para preencher as lista de tarefas enquanto carrega a página
   
 
-  //método para pegar todas as tarefas da coleção  no MOngoDB
+  //método para pegar todas as tarefas da coleção  no MongoDB
   const fetchTarefas = async () =>{
     const response = await fetch("/api/todos");
     const data = await response.json();
@@ -29,4 +29,6 @@ export default function Home() {
     setTarefas([...tarefas, data.data]);
     setNewTarefa("");
   }
+
+
 }
