@@ -39,16 +39,16 @@ O projeto consiste no desenvolvimento de um Sistema de Gestão de Manutenção (
 1. ### Classe
 Descrever o Comportamento das Entidades de um Projeto
 
-    - Usuário (User/Usuario)
-        - Atributos: id, nome, email, senha, função
-        - métodos: create, read, update, delete, login, logout
+- Usuário (User/Usuario)
+    - Atributos: id, nome, email, senha, função
+    - métodos: create, read, update, delete, login, logout
 
-    - Equipamento (Equipment/Equipamento)
-        - Atributos: id, modelo, marca, localiza, status, numeroSerie
-        - Métodos: CRUD
-    
-    - Ordem de Serviço (OrdemServico)
-        - Atributos:  id, titulo, descricao, tipoManutenção, status, idTecnico, IdEquipamento
+- Equipamento (Equipment/Equipamento)
+    - Atributos: id, modelo, marca, localiza, status, numeroSerie
+    - Métodos: CRUD
+
+- Ordem de Serviço (OrdemServico)
+    - Atributos:  id, titulo, descricao, tipoManutenção, status, idTecnico, IdEquipamento
 
 ```mermaid
 
@@ -90,11 +90,11 @@ classDiagram
     Equipamento "1"--"1+" OrdemServico: "associada a"
 
 ```
-2. ### Casos de Uso
-Ilustra as interações dos diferentes tipos de usuários (Atores) com as funcionalidades do sistema
+2. ### Caso de Uso
+Ilustra as interações dos diferentes tipos de usuários (Atores) com as funcionalidade do sistema
 
-- Casos de Uso:
-    - Técnico: Gerenciar Ordens de Serviço (CRUD) e acessar o Dashboard
+- Caso de Uso:
+    - Técnico: Gerenciar Ordens de Serviço (CRUD) e acessar o Dashboard;
     - Gerente: funções do técnico + Gerenciamento de Equipamentos (CRUD);
     - Admin: Gerenciar Usuários do Sistema, acessar o Dashboard
 
@@ -106,14 +106,14 @@ graph TD
 
     subgraph "SGM"
         caso1([Fazer Login])
-        caso2([Gerenciar Ordens de Serviço - CRUD])
+        caso2([Gerenciar Ordens de Srviço - CRUD])
         caso3([Gerenciar Equipamentos - CRUD])
         caso4([Gerenciar Usuários])
-        caso5([Acessar o Dashboard])
+        caso5([Acessar o DashBoard])
     end
 
-    Técnico([Técnico de Manuteção])
-    Gerente([Gerente de Manutenção])
+    Tecnico([👩‍🔧Técnico de Manutenção])
+    Gerente([👩‍💼Gerente de Manutenção])
     Admin([Administrador do Sistema])
 
     Tecnico --> caso1
@@ -123,7 +123,7 @@ graph TD
     Gerente --> caso1
     Gerente --> caso2
     Gerente --> caso3
-    Gerente --> caso4
+    Gerente --> caso5
 
     Admin --> caso1
     Admin --> caso4
@@ -133,5 +133,27 @@ graph TD
     caso1 -.-> caso3
     caso1 -.-> caso4
     caso1 -.-> caso5
+    
+```
+3. ### Fluxo
+Detalha o passo a passo para realizar uma ação no sistema
+
+- Diagrama de fluxo de Login
+    - O usuário acessa a tela de login
+    - Insere as credenciais
+    - O sistema verifica as Credenciais
+        - se sim: ger um JWT (Token) => Dashboard
+        - se não: manda uma mensagem de erro - Permanece na tela de Login
+
+```mermaid
+
+graph TD
+    A[Início] --> B{Acessa a Tela de Login}
+    B --> C[Preencher Email e Senha]
+    C --> D{Validar as Credenciais}
+    D --> SIM --> E[Gerar um Token JWT]
+    E --> F[DashBoard]
+    D --> NÃO --> G[Mensagem de Erro]
+    G --> B
 
 ```
