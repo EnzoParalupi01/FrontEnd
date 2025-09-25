@@ -59,7 +59,7 @@ classDiagram
         +String nome
         +String email
         +String senha
-        +Enum funcao
+        +Enun funcao
         +login()
         +logout()
         +CRUD()
@@ -69,8 +69,8 @@ classDiagram
         +String id
         +String modelo
         +String marca
-        +String localização
-        +Boolean Status
+        +String localizacao
+        +boolean status
         +String numSerie
         +CRUD()
     }
@@ -79,7 +79,7 @@ classDiagram
         +String id
         +String titulo
         +String descricao
-        +String tipoManutenção
+        +String tipoManutencao
         +Enum status
         +String idTecnico
         +String IdEquipamento
@@ -87,7 +87,6 @@ classDiagram
     }
 
     Usuario "1"--"1+" OrdemServico: "é Responsável por"
-    Equipamento "1"--"1+" OrdemServiço: "associada a"
-
+    Equipamento "1"--"1+" OrdemServico: "associada a"
 
 ```
